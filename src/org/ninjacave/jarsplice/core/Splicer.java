@@ -65,9 +65,10 @@ public class Splicer
             this.dirs.add(entry.getName());
           }
         }
-        else if (!entry.getName().toLowerCase().startsWith("meta-inf"))
+        else
         {
-          if (!entry.getName().toLowerCase().contains("JarSpliceLauncher"))
+          if (!entry.getName().toLowerCase().contains("JarSpliceLauncher") &&
+              !entry.getName().contains("MANIFEST.MF"))
           {
             InputStream in = jarFile.getInputStream(jarFile.getEntry(entry.getName()));
 
