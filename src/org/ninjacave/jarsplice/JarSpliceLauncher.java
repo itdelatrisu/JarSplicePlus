@@ -22,7 +22,7 @@ import java.util.jar.Manifest;
 
 public class JarSpliceLauncher
 {
-  public JarSpliceLauncher()
+  public JarSpliceLauncher(String[] args)
     throws Exception
   {
     File file = getCodeSourceLocation();
@@ -49,6 +49,8 @@ public class JarSpliceLauncher
       arguments.add(file.getAbsoluteFile().toString());
       arguments.add("-Djava.library.path=" + nativeDirectory);
       arguments.add(mainClass);
+      for (String arg : args)
+        arguments.add(arg);
 
       ProcessBuilder processBuilder = new ProcessBuilder(arguments);
       processBuilder.redirectErrorStream(true);
@@ -182,6 +184,6 @@ public class JarSpliceLauncher
   }
 
   public static void main(String[] args) throws Exception {
-    new JarSpliceLauncher();
+    new JarSpliceLauncher(args);
   }
 }
